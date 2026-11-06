@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A student-created guide to caring for your mind and body through everyday healthy habits.">
+  <title>Mind & Body | Small Steps, Healthier You</title>
+  <style>
+    :root {
+      --ink: #20352f;
+      --muted: #61736c;
+      --green: #2f6b58;
+      --green-dark: #214c40;
+      --mint: #eaf4ed;
+      --cream: #fbf8f1;
+      --peach: #f6e5d9;
+      --gold: #e5b96b;
+      --white: #fff;
+      --line: #dce7df;
+      --shadow: 0 14px 40px rgba(32, 53, 47, .09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 86px; }
+    body {
+      margin: 0; color: var(--ink); background: var(--cream);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+    a { color: var(--green); }
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--gold); outline-offset: 3px;
+    }
+    .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 20; background: rgba(251,248,241,.94);
+      backdrop-filter: blur(12px); border-bottom: 1px solid rgba(220,231,223,.9);
+    }
+    .nav-wrap { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 850; letter-spacing: -.5px; font-size: 1.12rem; }
+    .brand-mark { width: 38px; height: 38px; display:grid; place-items:center; background: var(--green); color:white; border-radius: 13px; font-size: 1.2rem; }
+    nav { display: flex; align-items: center; gap: 23px; }
+    nav a { text-decoration: none; color: var(--ink); font-size: .91rem; font-weight: 650; }
+    nav a:hover { color: var(--green); }
+    .nav-cta, .btn {
+      border: 0; border-radius: 999px; padding: 12px 20px; background: var(--green);
+      color: white; text-decoration: none; font-weight: 750; cursor: pointer; display: inline-flex;
+      align-items: center; justify-content: center; gap: 8px; transition: .2s ease;
+    }
+    .nav-cta:hover, .btn:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .menu-toggle { display:none; border:1px solid var(--line); background:white; border-radius:12px; padding:8px 12px; color:var(--ink); font-size:1.2rem; }
+    .hero { padding: 78px 0 72px; overflow: hidden; }
+    .hero-grid { display:grid; grid-template-columns: 1.05fr .95fr; align-items:center; gap:54px; }
+    .eyebrow { display:inline-flex; align-items:center; gap:8px; padding:7px 13px; border-radius:99px; background:var(--mint); color:var(--green-dark); font-size:.78rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    h1 { font-size: clamp(2.8rem, 6vw, 5.1rem); line-height:1.04; letter-spacing:-.065em; margin:20px 0; max-width:690px; }
+    h1 span { color:var(--green); }
+    .hero p { color:var(--muted); font-size:1.12rem; max-width:560px; margin:0 0 27px; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+    .btn.secondary { background:transparent; color:var(--green); border:1px solid #b9cec1; }
+    .btn.secondary:hover { background:var(--mint); }
+    .hero-note { margin-top:24px; color:var(--muted); font-size:.87rem; }
+    .hero-art { min-height:440px; position:relative; display:grid; place-items:center; }
+    .sun { width:310px; height:310px; border-radius:50%; background:#f2d9b4; position:absolute; top:25px; right:35px; }
+    .art-card { position:relative; z-index:1; width:min(390px, 90%); padding:30px; border-radius:30px; background:white; box-shadow:var(--shadow); transform:rotate(-3deg); }
+    .art-illustration { height:230px; border-radius:22px; background:linear-gradient(145deg,#dceee1,#f7ead9); display:grid; place-items:center; font-size:7rem; position:relative; overflow:hidden; }
+    .art-illustration:before,.art-illustration:after { content:""; position:absolute; border:2px solid rgba(47,107,88,.22); border-radius:50%; width:180px;height:180px; }
+    .art-illustration:after { width:245px;height:245px; }
+    .art-caption { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-top:20px; }
+    .art-caption strong { font-size:1.05rem; }
+    .art-caption small { color:var(--muted); }
+    .floating { position:absolute; z-index:2; background:white; border-radius:16px; padding:13px 17px; box-shadow:var(--shadow); font-weight:750; }
+    .float-one { top:54px; left:0; transform:rotate(4deg); }
+    .float-two { bottom:44px; right:0; transform:rotate(3deg); }
+    section { padding:76px 0; }
+    .section-head { max-width:680px; margin-bottom:34px; }
+    .section-head h2 { font-size:clamp(2rem,4vw,3rem); line-height:1.1; letter-spacing:-.045em; margin:12px 0; }
+    .section-head p { color:var(--muted); margin:0; }
+    .about { background:white; }
+    .about-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:65px; align-items:center; }
+    .about-visual { background:var(--mint); border-radius:28px; min-height:300px; display:grid; place-items:center; font-size:6.5rem; }
+    .about-copy h2 { font-size:2.45rem; line-height:1.12; letter-spacing:-.04em; margin:12px 0 18px; }
+    .about-copy p { color:var(--muted); }
+    .audience { margin-top:20px; padding:17px 20px; background:var(--cream); border-left:4px solid var(--gold); border-radius:0 14px 14px 0; }
+    .topics { background:#f3f7f1; }
+    .topic-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .topic-card { background:white; border:1px solid var(--line); border-radius:22px; padding:25px; box-shadow:0 6px 22px rgba(32,53,47,.04); }
+    .topic-icon { width:52px;height:52px;display:grid;place-items:center;border-radius:16px;background:var(--mint);font-size:1.6rem; }
+    .topic-card h3 { margin:17px 0 8px; font-size:1.25rem; }
+    .topic-card p { color:var(--muted); font-size:.94rem; margin:0 0 14px; }
+    .topic-card ul { padding-left:19px; margin:0; font-size:.9rem; }
+    .topic-card li { margin:5px 0; }
+    .fact { margin-top:15px; background:var(--cream); border-radius:12px; padding:12px; font-size:.86rem; }
+    .resources { background:white; }
+    .resource-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .resource { display:flex; gap:16px; padding:21px; border:1px solid var(--line); border-radius:18px; }
+    .resource-icon { font-size:1.6rem; }
+    .resource h3 { margin:0 0 5px; font-size:1.05rem; }
+    .resource p { color:var(--muted); margin:0 0 8px; font-size:.9rem; }
+    .resource a { font-weight:750; font-size:.9rem; }
+    .disclaimer { margin-top:25px; padding:17px 20px; background:#fff7e9; border:1px solid #f1dfbd; border-radius:15px; color:#695438; font-size:.9rem; }
+    .register { background:var(--mint); }
+    .register-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:55px; align-items:start; }
+    .register-intro h2 { font-size:2.7rem; line-height:1.08; letter-spacing:-.05em; margin:14px 0; }
+    .register-intro p { color:var(--muted); }
+    .register-points { list-style:none; padding:0; margin:24px 0; }
+    .register-points li { margin:12px 0; display:flex; gap:10px; align-items:flex-start; }
+    .form-card { background:white; border-radius:25px; padding:30px; box-shadow:var(--shadow); }
+    .form-card h3 { margin:0 0 6px; font-size:1.4rem; }
+    .form-card > p { margin:0 0 22px; color:var(--muted); font-size:.9rem; }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+    .field { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
+    .field.full { grid-column:1/-1; }
+    label { font-size:.87rem; font-weight:750; }
+    input, select, textarea { width:100%; border:1px solid #cbd9d0; border-radius:11px; padding:12px 13px; color:var(--ink); background:#fff; font:inherit; font-size:.93rem; }
+    textarea { min-height:95px; resize:vertical; }
+    input:focus,select:focus,textarea:focus { outline:2px solid #9bbca7; border-color:var(--green); }
+    .hint { font-size:.78rem; color:var(--muted); }
+    .checkline { display:flex; gap:10px; align-items:flex-start; margin:5px 0 18px; font-size:.83rem; color:var(--muted); }
+    .checkline input { width:auto; margin-top:5px; }
+    .form-message { display:none; padding:15px; border-radius:13px; margin-top:17px; font-size:.9rem; }
+    .form-message.success { display:block; background:#e8f5eb; border:1px solid #b8d9c0; color:#24553a; }
+    .form-message.error { display:block; background:#fff0ed; border:1px solid #efc3b9; color:#873d31; }
+    .form-foot { margin-top:13px; color:var(--muted); font-size:.78rem; }
+    footer { background:#203d34; color:#eaf4ed; padding:42px 0 25px; }
+    .footer-top { display:flex; justify-content:space-between; gap:30px; align-items:flex-start; padding-bottom:25px; border-bottom:1px solid rgba(255,255,255,.18); }
+    footer .brand { color:white; }
+    footer p { color:#c4d5cb; max-width:470px; font-size:.9rem; }
+    .footer-links { display:flex; flex-wrap:wrap; gap:18px; }
+    .footer-links a { color:#eaf4ed; text-decoration:none; font-size:.88rem; }
+    .copyright { color:#b8cbc0; font-size:.8rem; padding-top:20px; }
+    @media (max-width:850px) {
+      .hero-grid,.about-grid,.register-grid { grid-template-columns:1fr; gap:35px; }
+      .hero { padding-top:55px; }
+      .hero-art { min-height:390px; }
+      .about-visual { min-height:220px; }
+      .topic-grid { grid-template-columns:1fr 1fr; }
+      .register-grid { gap:20px; }
+    }
+    @media (max-width:650px) {
+      .container { width:min(100% - 30px,1120px); }
+      .nav-wrap { min-height:66px; }
+      .menu-toggle { display:block; }
+      nav { display:none; position:absolute; top:66px; left:0; right:0; padding:18px 22px 22px; background:var(--cream); border-bottom:1px solid var(--line); flex-direction:column; align-items:stretch; gap:15px; }
+      nav.open { display:flex; }
+      nav .nav-cta { text-align:center; }
+      .hero { padding:45px 0 50px; }
+      .hero-art { min-height:330px; }
+      .sun { width:230px;height:230px;right:20px; }
+      .art-card { padding:18px; }
+      .art-illustration { height:180px; font-size:5rem; }
+      .float-one { top:20px; }
+      .float-two { bottom:18px; }
+      section { padding:58px 0; }
+      .topic-grid,.resource-grid,.form-grid { grid-template-columns:1fr; }
+      .field.full { grid-column:auto; }
+      .form-card { padding:22px; }
+      .footer-top { flex-direction:column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *,*::before,*::after { transition:none !important; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container nav-wrap">
+    <a class="brand" href="#home" aria-label="Mind and Body home"><span class="brand-mark">✿</span> mind & body</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+    <nav id="mainNav" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#topics">Health Topics</a>
+      <a href="#resources">Tips & Resources</a>
+      <a class="nav-cta" href="#register">Join the community ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">✦ Your everyday wellness guide</span>
+        <h1>Care for your <span>mind.</span><br>Care for your body.</h1>
+        <p>Well-being is built through small, meaningful choices. Explore simple ways to support your mental and physical health—one day at a time.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#topics">Explore health topics <span>→</span></a>
+          <a class="btn secondary" href="#about">Learn about us</a>
+        </div>
+        <div class="hero-note">A healthier life doesn't have to start with a big change. Start with one small step.</div>
+      </div>
+      <div class="hero-art" aria-label="Illustration representing balance and wellness">
+        <div class="sun"></div>
+        <div class="floating float-one">🌱 Small steps matter</div>
+        <div class="art-card">
+          <div class="art-illustration">🧘</div>
+          <div class="art-caption"><div><strong>Find your balance</strong><br><small>Mind • Body • Everyday life</small></div><span>☀️</span></div>
+        </div>
+        <div class="floating float-two">💚 Make time for you</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container about-grid">
+      <div class="about-visual" aria-hidden="true">🌿</div>
+      <div class="about-copy">
+        <span class="eyebrow">A little about this website</span>
+        <h2>Healthy habits begin with understanding.</h2>
+        <p><strong>Mind & Body</strong> is an educational website created to encourage people to take care of their overall well-being. It brings together approachable information about mental wellness, physical activity, nutrition, and healthy daily routines.</p>
+        <p>Our goal is to make reliable health information easier to understand and turn into practical everyday habits. We believe that caring for your mind is just as important as caring for your body.</p>
+        <div class="audience"><strong>Who is this for?</strong><br>Students, young adults, families, and anyone who wants to learn healthy habits and make informed choices about everyday wellness.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="topics" id="topics">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Learn • Practice • Grow</span>
+        <h2>Three foundations of a healthier you.</h2>
+        <p>Explore these general health topics and choose one small action you can practice today.</p>
+      </div>
+      <div class="topic-grid">
+        <article class="topic-card">
+          <div class="topic-icon">🧠</div>
+          <h3>1. Mental Wellness</h3>
+          <p>Mental wellness includes how we think, feel, cope with challenges, and connect with other people. It deserves attention just like physical health.</p>
+          <ul>
+            <li>Talk with someone you trust about how you feel.</li>
+            <li>Take short breaks when you feel overwhelmed.</li>
+            <li>Try slow breathing, journaling, or a calming activity.</li>
+            <li>Ask for professional support when distress persists.</li>
+          </ul>
+          <div class="fact"><strong>Remember:</strong> Stress is a normal response, but ongoing or overwhelming stress deserves care and support.</div>
+        </article>
+        <article class="topic-card">
+          <div class="topic-icon">🏃</div>
+          <h3>2. Physical Activity</h3>
+          <p>Moving your body can support heart health, strength, mood, and everyday functioning. Choose activities that fit your abilities and circumstances.</p>
+          <ul>
+            <li>Walk, dance, cycle, stretch, or play a sport.</li>
+            <li>Break up long periods of sitting when possible.</li>
+            <li>Start gently and increase activity gradually.</li>
+            <li>Make rest and recovery part of your routine.</li>
+          </ul>
+          <div class="fact"><strong>Helpful guide:</strong> WHO recommends adults aim for at least 150 minutes of moderate activity across a week, when able.</div>
+        </article>
+        <article class="topic-card">
+          <div class="topic-icon">🥗</div>
+          <h3>3. Nutrition & Sleep</h3>
+          <p>Food provides energy and nutrients, while sleep helps the body and brain recover. Both are important parts of everyday well-being.</p>
+          <ul>
+            <li>Eat a variety of vegetables, fruits, and whole foods.</li>
+            <li>Drink water regularly throughout the day.</li>
+            <li>Keep a consistent sleep and wake schedule.</li>
+            <li>Create a calm, comfortable bedtime routine.</li>
+          </ul>
+          <div class="fact"><strong>Helpful guide:</strong> Most adults aged 18–60 need at least 7 hours of sleep each night.</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="resources" id="resources">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Your everyday wellness toolkit</span>
+        <h2>Simple tips. Trusted information.</h2>
+        <p>Use these practical ideas as a starting point, then explore the trusted sources for more detailed guidance.</p>
+      </div>
+      <div class="resource-grid">
+        <article class="resource"><div class="resource-icon">🌬️</div><div><h3>Pause and reset</h3><p>Take a few slow breaths, step away from a stressful task, or spend a moment outdoors.</p><a href="https://www.who.int/news-room/questions-and-answers/item/stress" target="_blank" rel="noopener">WHO: Understanding stress ↗</a></div></article>
+        <article class="resource"><div class="resource-icon">🚶</div><div><h3>Add movement to your day</h3><p>Try a short walk, gentle stretching, or an activity you enjoy. Some movement is better than none.</p><a href="https://www.who.int/initiatives/behealthy/physical-activity" target="_blank" rel="noopener">WHO: Physical activity ↗</a></div></article>
+        <article class="resource"><div class="resource-icon">🍎</div><div><h3>Build a balanced plate</h3><p>Choose a variety of nutritious foods, including fruits, vegetables, whole grains, and protein sources.</p><a href="https://www.who.int/news-room/fact-sheets/detail/healthy-diet" target="_blank" rel="noopener">WHO: Healthy diet ↗</a></div></article>
+        <article class="resource"><div class="resource-icon">🌙</div><div><h3>Protect your sleep</h3><p>Keep a regular sleep schedule and make your bedroom quiet, relaxing, and comfortable.</p><a href="https://www.cdc.gov/sleep/about/" target="_blank" rel="noopener">CDC: About sleep ↗</a></div></article>
+      </div>
+      <div class="disclaimer"><strong>Health note:</strong> This website provides general educational information only. It is not a substitute for medical advice, diagnosis, or treatment. Health needs differ from person to person. Consult a qualified health professional for personal concerns, and seek urgent help for emergencies.</div>
+    </div>
+  </section>
+
+  <section class="register" id="register">
+    <div class="container register-grid">
+      <div class="register-intro">
+        <span class="eyebrow">Stay connected</span>
+        <h2>Take your first step toward better habits.</h2>
+        <p>Register your interest in our wellness learning activities. Choose a topic you would like to explore and tell us what you hope to learn.</p>
+        <ul class="register-points">
+          <li><span>✓</span><span>Discover practical wellness ideas.</span></li>
+          <li><span>✓</span><span>Choose the health topic that interests you.</span></li>
+          <li><span>✓</span><span>Reflect on one positive habit to build.</span></li>
+        </ul>
+      </div>
+      <div class="form-card">
+        <h3>Wellness interest form</h3>
+        <p>Fields marked with * are required. This is a classroom demonstration form.</p>
+        <form id="registrationForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="fullName">Full name *</label>
+              <input id="fullName" name="fullName" type="text" placeholder="e.g. Alex Santos" autocomplete="name" required minlength="2" maxlength="70">
+            </div>
+            <div class="field">
+              <label for="email">Email address *</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required maxlength="100">
+            </div>
+            <div class="field">
+              <label for="ageGroup">Age group *</label>
+              <select id="ageGroup" name="ageGroup" required>
+                <option value="">Select your age group</option>
+                <option>Under 13</option><option>13–17</option><option>18–24</option><option>25–34</option><option>35–49</option><option>50 and above</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="topic">Topic of interest *</label>
+              <select id="topic" name="topic" required>
+                <option value="">Choose a topic</option>
+                <option>Mental Wellness</option><option>Physical Activity</option><option>Nutrition & Sleep</option><option>All topics</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="goal">What would you like to learn? *</label>
+              <textarea id="goal" name="goal" placeholder="Share a habit you want to build or a question you have..." required minlength="5" maxlength="500"></textarea>
+              <span class="hint">Please do not include private medical details. Maximum 500 characters.</span>
+            </div>
+          </div>
+          <label class="checkline" for="consent"><input id="consent" name="consent" type="checkbox" required><span>I understand this is an educational interest form and that my entry will not be sent or stored by this demo website. *</span></label>
+          <button class="btn" type="submit">Submit registration <span>→</span></button>
+          <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+          <div class="form-foot">Privacy: Do not enter sensitive or confidential information. No data is transmitted or saved.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a class="brand" href="#home"><span class="brand-mark">✿</span> mind & body</a>
+        <p>Small steps toward a healthier mind and body. Learn, make informed choices, and remember that your well-being matters.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#about">About</a><a href="#topics">Health Topics</a><a href="#resources">Resources</a><a href="#register">Registration</a>
+      </div>
+    </div>
+    <div class="copyright">© <span id="year"></span> Mind & Body • Student health education project • General information only</div>
+  </div>
+</footer>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mainNav.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    menuToggle.textContent = isOpen ? '✕' : '☰';
+  });
+
+  mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open navigation menu');
+      menuToggle.textContent = '☰';
+    });
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const form = document.getElementById('registrationForm');
+  const message = document.getElementById('formMessage');
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    message.className = 'form-message';
+    message.textContent = '';
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      message.textContent = 'Please complete all required fields with valid information before submitting.';
+      message.className = 'form-message error';
+      return;
+    }
+
+    const name = document.getElementById('fullName').value.trim();
+    const firstName = name.split(/\s+/)[0];
+    message.textContent = `Thank you, ${firstName}! Your form has passed the checks. This is a demonstration only: your information has not been sent or saved.`;
+    message.className = 'form-message success';
+    form.reset();
+  });
+</script>
+</body>
+</html>
